@@ -32,52 +32,50 @@ const StyledAvatar = styled(Avatar)`
 
 export default function Header() {
   return (
-    <Box>
-      <AppBar color="transparent">
-        <Toolbar>
-          <Typography
-            sx={{ fontWeight: "bold", fontSize: "20px", color: "#636363" }}
-          >
-            CRM Dash
-          </Typography>
-
-          <Box sx={{ flexGrow: 1 }} />
-          <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            <IconButton
-              size="large"
-              aria-label="show 4 new mails"
-              color="inherit"
-            >
-              <Badge badgeContent={4} color="error">
-                <BellIcon />
-              </Badge>
-            </IconButton>
-            <Box
-              sx={{ display: { xs: "none", md: "flex" }, alignItems: "center" }}
-            >
-              <StyledAvatar>V</StyledAvatar>
-            </Box>
-          </Box>
-        </Toolbar>
-
-        <BottomNavigation
-          sx={{ display: { xs: "none", md: "flex" } }}
-          showLabels
-          value={"/"}
-          onChange={(event, newValue) => {
-            console.log(newValue);
-          }}
+    <AppBar position="sticky" color="inherit">
+      <Toolbar>
+        <Typography
+          sx={{ fontWeight: "bold", fontSize: "20px", color: "#636363" }}
         >
-          {NavigationData.map((el) => (
-            <StyledBottomNavigationAction
-              icon={el.icon}
-              label={el.label}
-              value={el.value}
-              className="active"
-            />
-          ))}
-        </BottomNavigation>
-      </AppBar>
-    </Box>
+          CRM Dash
+        </Typography>
+
+        <Box sx={{ flexGrow: 1 }} />
+        <Box sx={{ display: { xs: "none", md: "flex" } }}>
+          <IconButton
+            size="large"
+            aria-label="show 4 new mails"
+            color="inherit"
+          >
+            <Badge badgeContent={4} color="error">
+              <BellIcon />
+            </Badge>
+          </IconButton>
+          <Box
+            sx={{ display: { xs: "none", md: "flex" }, alignItems: "center" }}
+          >
+            <StyledAvatar>V</StyledAvatar>
+          </Box>
+        </Box>
+      </Toolbar>
+
+      <BottomNavigation
+        sx={{ display: { xs: "none", md: "flex" } }}
+        showLabels
+        value={"/"}
+        onChange={(event, newValue) => {
+          console.log(newValue);
+        }}
+      >
+        {NavigationData.map((el) => (
+          <StyledBottomNavigationAction
+            icon={el.icon}
+            label={el.label}
+            value={el.value}
+            className="active"
+          />
+        ))}
+      </BottomNavigation>
+    </AppBar>
   );
 }
