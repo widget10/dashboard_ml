@@ -1,11 +1,13 @@
 import { Divider, Paper } from "@mui/material";
-
 import styled from "styled-components";
 
 const ChartHeading = styled.div`
+  display: flex;
+  align-items: center;
   color: #777575;
   font-size: 16px;
   font-weight: bold;
+  margin: 0px 16px;
 `;
 
 const Actions = styled.div`
@@ -16,7 +18,6 @@ const Actions = styled.div`
 const Header = styled.div`
   display: flex;
   align-items: center;
-  margin: 16px;
 `;
 
 const ChartBoxContainer = styled(Paper)`
@@ -24,21 +25,16 @@ const ChartBoxContainer = styled(Paper)`
   padding: 8px;
 `;
 
-const ChartContent = styled.div`
-  display: flex;
-  align-items: center;
-  padding: 16px;
-`;
-
 function ChartBox({ header, action, chart }) {
   return (
     <ChartBoxContainer>
       <Header>
         {header && <ChartHeading>{header}</ChartHeading>}
-        {<Actions>{action}</Actions>}
+        {action && <Actions>{action}</Actions>}
       </Header>
-      <Divider />
-      <ChartContent>{chart}</ChartContent>
+
+      {header || action ? <Divider style={{ margin: "8px 0px" }} /> : null}
+      {chart}
     </ChartBoxContainer>
   );
 }

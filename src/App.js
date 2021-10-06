@@ -4,9 +4,9 @@ import { Box } from "@mui/material";
 
 function App() {
   return (
-    <Box style={{ height: "100vh", background: "#f4f4f4" }}>
+    <Box>
       <Header />
-      <Box>
+      <Box mt={8}>
         <DashboardContainer />
       </Box>
     </Box>

@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 // import { styled } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -16,11 +16,10 @@ const StyledBottomNavigationAction = styled(BottomNavigationAction)`
   flex-direction: row;
   .MuiSvgIcon-root {
     margin-right: 8px;
-
-    color: #a1a1a1;
+    color: ${(props) => (props.active ? "#1c79f3" : "#a1a1a1")};
   }
   .MuiBottomNavigationAction-label {
-    color: #a1a1a1;
+    color: ${(props) => (props.active ? "#1c79f3" : "#a1a1a1")};
   }
 `;
 
@@ -31,6 +30,7 @@ const StyledAvatar = styled(Avatar)`
 `;
 
 export default function Header() {
+  const [navData, setnavData] = useState(NavigationData);
   return (
     <AppBar position="sticky" color="inherit">
       <Toolbar>
@@ -64,15 +64,17 @@ export default function Header() {
         showLabels
         value={"/"}
         onChange={(event, newValue) => {
-          console.log(newValue);
+          // console.log(newValue);
+          // const newNavdata = navData[newValue] && navData[newValue].active = true || [];
+          // setnavData(newNavdata);
         }}
       >
-        {NavigationData.map((el) => (
+        {NavigationData.map((el, i) => (
           <StyledBottomNavigationAction
             icon={el.icon}
             label={el.label}
-            value={el.value}
-            className="active"
+            value={i}
+            active={el.active}
           />
         ))}
       </BottomNavigation>
