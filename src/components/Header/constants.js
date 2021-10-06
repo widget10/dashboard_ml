@@ -10,41 +10,49 @@ const NavigationData = [
   {
     value: "/",
     icon: <PersonOutlineIcon />,
+    active: true,
     label: "Dashboard",
   },
   {
     value: "/",
     icon: <ContactSupportIcon />,
+    active: false,
     label: "HelpDesk",
   },
   {
     value: "/",
     icon: <ListAltIcon />,
+    active: false,
     label: "My Tasks",
   },
   {
     value: "/",
     icon: <AssignmentIcon />,
+    active: false,
     label: "Projects",
   },
   {
     value: "/",
     icon: <PeopleOutlineIcon />,
+    active: false,
     label: "Clients",
   },
   {
     value: "/",
     icon: <DescriptionIcon />,
+    active: false,
     label: "Invoice",
   },
   {
     value: "/",
     icon: <ReceiptIcon />,
+    active: false,
     label: "Reports",
   },
   {
     value: "/",
     icon: <SettingsIcon />,
+    active: false,
     label: "Settings",
   },
 ];

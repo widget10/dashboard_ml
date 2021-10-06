@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 // import { styled } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -16,11 +16,10 @@ const StyledBottomNavigationAction = styled(BottomNavigationAction)`
   flex-direction: row;
   .MuiSvgIcon-root {
     margin-right: 8px;
-
-    color: #a1a1a1;
+    color: ${(props) => (props.active ? "#1c79f3" : "#a1a1a1")};
   }
   .MuiBottomNavigationAction-label {
-    color: #a1a1a1;
+    color: ${(props) => (props.active ? "#1c79f3" : "#a1a1a1")};
   }
 `;
 
@@ -31,53 +30,54 @@ const StyledAvatar = styled(Avatar)`
 `;
 
 export default function Header() {
+  const [navData, setnavData] = useState(NavigationData);
   return (
-    <Box>
-      <AppBar color="transparent">
-        <Toolbar>
-          <Typography
-            sx={{ fontWeight: "bold", fontSize: "20px", color: "#636363" }}
-          >
-            CRM Dash
-          </Typography>
-
-          <Box sx={{ flexGrow: 1 }} />
-          <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            <IconButton
-              size="large"
-              aria-label="show 4 new mails"
-              color="inherit"
-            >
-              <Badge badgeContent={4} color="error">
-                <BellIcon />
-              </Badge>
-            </IconButton>
-            <Box
-              sx={{ display: { xs: "none", md: "flex" }, alignItems: "center" }}
-            >
-              <StyledAvatar>V</StyledAvatar>
-            </Box>
-          </Box>
-        </Toolbar>
-
-        <BottomNavigation
-          sx={{ display: { xs: "none", md: "flex" } }}
-          showLabels
-          value={"/"}
-          onChange={(event, newValue) => {
-            console.log(newValue);
-          }}
+    <AppBar position="sticky" color="inherit">
+      <Toolbar>
+        <Typography
+          sx={{ fontWeight: "bold", fontSize: "20px", color: "#636363" }}
         >
-          {NavigationData.map((el) => (
-            <StyledBottomNavigationAction
-              icon={el.icon}
-              label={el.label}
-              value={el.value}
-              className="active"
-            />
-          ))}
-        </BottomNavigation>
-      </AppBar>
-    </Box>
+          CRM Dash
+        </Typography>
+
+        <Box sx={{ flexGrow: 1 }} />
+        <Box sx={{ display: { xs: "none", md: "flex" } }}>
+          <IconButton
+            size="large"
+            aria-label="show 4 new mails"
+            color="inherit"
+          >
+            <Badge badgeContent={4} color="error">
+              <BellIcon />
+            </Badge>
+          </IconButton>
+          <Box
+            sx={{ display: { xs: "none", md: "flex" }, alignItems: "center" }}
+          >
+            <StyledAvatar>V</StyledAvatar>
+          </Box>
+        </Box>
+      </Toolbar>
+
+      <BottomNavigation
+        sx={{ display: { xs: "none", md: "flex" } }}
+        showLabels
+        value={"/"}
+        onChange={(event, newValue) => {
+          // console.log(newValue);
+          // const newNavdata = navData[newValue] && navData[newValue].active = true || [];
+          // setnavData(newNavdata);
+        }}
+      >
+        {NavigationData.map((el, i) => (
+          <StyledBottomNavigationAction
+            icon={el.icon}
+            label={el.label}
+            value={i}
+            active={el.active}
+          />
+        ))}
+      </BottomNavigation>
+    </AppBar>
   );
 }
