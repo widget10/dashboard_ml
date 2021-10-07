@@ -17,9 +17,6 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
-
 import Avatar from "@mui/material/Avatar";
 import BellIcon from "@mui/icons-material/Notifications";
 import AccountCircle from "@mui/icons-material/AccountCircle";
@@ -80,10 +77,16 @@ export default function Header() {
     setOpen(true);
   };
 
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+    handleMobileMenuClose();
+  };
+
   const handleDrawerClose = () => {
     setOpen(false);
   };
 
+  const menuId = "primary-search-account-menu";
   const mobileMenuId = "primary-search-account-menu";
   const renderMobileMenu = (
     <Menu
@@ -162,6 +165,27 @@ export default function Header() {
     </Drawer>
   );
 
+  const renderMenu = (
+    <Menu
+      anchorEl={anchorEl}
+      anchorOrigin={{
+        vertical: "top",
+        horizontal: "right",
+      }}
+      id={menuId}
+      keepMounted
+      transformOrigin={{
+        vertical: "top",
+        horizontal: "right",
+      }}
+      open={isMenuOpen}
+      onClose={handleMenuClose}
+    >
+      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+      <MenuItem onClick={handleMenuClose}>Logout</MenuItem>
+    </Menu>
+  );
+
   return (
     <AppBar position="sticky" color="inherit">
       <Toolbar>
@@ -185,7 +209,17 @@ export default function Header() {
           <Box
             sx={{ display: { xs: "none", md: "flex" }, alignItems: "center" }}
           >
-            <StyledAvatar>V</StyledAvatar>
+            <IconButton
+              size="large"
+              edge="end"
+              aria-label="account of current user"
+              aria-controls={menuId}
+              aria-haspopup="true"
+              onClick={handleProfileMenuOpen}
+              color="inherit"
+            >
+              <StyledAvatar>V</StyledAvatar>
+            </IconButton>
           </Box>
         </Box>
         <Box sx={{ display: { xs: "flex", md: "none" } }}>
@@ -229,6 +263,8 @@ export default function Header() {
         ))}
       </BottomNavigation>
       {renderMobileMenu}
+      {renderMenu}
+
       {drawerNav}
     </AppBar>
   );

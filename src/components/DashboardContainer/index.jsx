@@ -44,7 +44,7 @@ const Banner = styled(Box)`
 
   .score-card {
     background: #17357d;
-    padding: 42px;
+    padding: 36px;
     color: #efef00;
     margin: 8px 16px;
     border-radius: 4px;
