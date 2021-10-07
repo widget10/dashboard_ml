@@ -1,5 +1,6 @@
 import React from "react";
 import { useTheme } from "@mui/material/styles";
+import { useSelector } from "react-redux";
 
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -21,6 +22,7 @@ import Avatar from "@mui/material/Avatar";
 import BellIcon from "@mui/icons-material/Notifications";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import MoreIcon from "@mui/icons-material/MoreVert";
+import LinearProgress from "@mui/material/LinearProgress";
 
 import {
   BottomNavigation,
@@ -55,9 +57,12 @@ export default function Header() {
   const theme = useTheme();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+  const [open, setOpen] = React.useState(false);
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+
+  const { isLoading, user } = useSelector((state) => state);
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -70,8 +75,6 @@ export default function Header() {
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
-
-  const [open, setOpen] = React.useState(false);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -86,8 +89,9 @@ export default function Header() {
     setOpen(false);
   };
 
-  const menuId = "primary-search-account-menu";
-  const mobileMenuId = "primary-search-account-menu";
+  const menuId = "primary-menuId";
+  const mobileMenuId = "primary-mobileMenuId";
+
   const renderMobileMenu = (
     <Menu
       anchorEl={mobileMoreAnchorEl}
@@ -188,6 +192,7 @@ export default function Header() {
 
   return (
     <AppBar position="sticky" color="inherit">
+      {isLoading && <LinearProgress />}
       <Toolbar>
         <Typography
           sx={{ fontWeight: "bold", fontSize: "20px", color: "#636363" }}
@@ -218,7 +223,7 @@ export default function Header() {
               onClick={handleProfileMenuOpen}
               color="inherit"
             >
-              <StyledAvatar>V</StyledAvatar>
+              <StyledAvatar>{user.name ? user.name[0] : "U"}</StyledAvatar>
             </IconButton>
           </Box>
         </Box>

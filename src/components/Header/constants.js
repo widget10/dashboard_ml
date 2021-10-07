@@ -6,6 +6,7 @@ import PeopleOutlineIcon from "@mui/icons-material/PeopleOutline";
 import DescriptionIcon from "@mui/icons-material/Description";
 import ReceiptIcon from "@mui/icons-material/Receipt";
 import SettingsIcon from "@mui/icons-material/Settings";
+
 const NavigationData = [
   {
     value: "/",
@@ -56,4 +57,5 @@ const NavigationData = [
     label: "Settings",
   },
 ];
+
 export default NavigationData;

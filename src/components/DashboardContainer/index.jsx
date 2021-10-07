@@ -1,12 +1,14 @@
-import { Container, Box, Button, Grid } from "@mui/material";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Container, Box, Button, Grid, Skeleton } from "@mui/material";
 import styled from "styled-components";
-
 import MyChartContainer from "../MyChartContainer";
 import ChartBox from "../ChartBox";
 import LineChart from "../Visualisations/LineChart";
 import ColumnBarGraph from "../Visualisations/ColumnBarGraph";
 import CountChart from "../Visualisations/CountChart";
 import DonutChart from "../Visualisations/DonutChart";
+import { getSales, getProfits } from "../../thunks";
 
 const CustomButton = styled(Button)`
   padding: 8px 32px;
@@ -73,6 +75,18 @@ const Banner = styled(Box)`
 `;
 
 function DashboardContainer() {
+  const { isLoading, user } = useSelector((state) => state);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getSales());
+  });
+
+  const handleProfitRefresh = () => {
+    dispatch(getProfits());
+  };
+
   return (
     <Container fluid style={{ marginTop: "16px" }}>
       <Grid container spacing={2}>
@@ -86,7 +100,15 @@ function DashboardContainer() {
                 content={
                   <Banner>
                     <div className="banner-text">
-                      <div className="header">Congrats User !!</div>
+                      {!isLoading ? (
+                        <div className="header">
+                          {`Welcome ${user ? user.name : "User"},`}
+                        </div>
+                      ) : (
+                        <div className="header">
+                          <Skeleton />
+                        </div>
+                      )}
                       <p className="content">
                         You have a great score. Add more rewards to your account
                         by redeeming your coupons.
@@ -106,7 +128,12 @@ function DashboardContainer() {
         <Grid xs={12} sm={12} md={4}>
           <MyChartContainer
             text={"Monthly Stats"}
-            content={<ChartBox chart={CountChart} />}
+            action={
+              <Button variant="text" onClick={handleProfitRefresh}>
+                View
+              </Button>
+            }
+            content={<ChartBox chart={<CountChart />} />}
           />
         </Grid>
         <Grid xs={12} sm={6} md={4}>
@@ -132,7 +159,7 @@ function DashboardContainer() {
                 <ChartBox
                   header="Clicks Trend"
                   action={<Button variant="text">View</Button>}
-                  chart={LineChart}
+                  chart={<LineChart />}
                 />
               }
             />
