@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Container, Box, Button, Grid, Skeleton } from "@mui/material";
-import styled from "styled-components";
+import { Container, Button, Grid, Skeleton, IconButton } from "@mui/material";
 import MyChartContainer from "../MyChartContainer";
 import ChartBox from "../ChartBox";
 import LineChart from "../Visualisations/LineChart";
@@ -9,70 +8,8 @@ import ColumnBarGraph from "../Visualisations/ColumnBarGraph";
 import CountChart from "../Visualisations/CountChart";
 import DonutChart from "../Visualisations/DonutChart";
 import { getSales, getProfits } from "../../thunks";
-
-const CustomButton = styled(Button)`
-  padding: 8px 32px;
-  border-radius: 4px;
-  color: #535151;
-  border: 1px solid #a5a4a4;
-  font-size: 12px;
-  font-weight: bold;
-  text-transform: none;
-
-  &.active {
-    background-color: #004386;
-  }
-
-  &.disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-    box-shadow: 0 0 0 0 rgba(0, 127, 255, 0);
-  }
-`;
-
-const StyledHeading = styled.div`
-  color: #535151;
-  font-size: 32px;
-  text-transform: none;
-  font-weight: normal;
-`;
-
-const Banner = styled(Box)`
-  background-color: #075be0;
-  color: rgba(0, 0, 0, 0.87);
-  border-radius: 4px;
-  display: flex;
-  align-items: center;
-
-  .score-card {
-    background: #17357d;
-    padding: 36px;
-    color: #efef00;
-    margin: 8px 16px;
-    border-radius: 4px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-left: auto;
-  }
-
-  .score {
-    font-size: 48px;
-  }
-
-  .banner-text {
-    display: flex;
-    flex-direction: column;
-    margin: 5%;
-    .header {
-      color: white;
-      font-size: 24px;
-    }
-    .content {
-      color: white;
-    }
-  }
-`;
+import { CustomButton, Banner, StyledHeading } from "./styles";
+import Refresh from "@mui/icons-material/RefreshRounded";
 
 function DashboardContainer() {
   const { isLoading, user } = useSelector((state) => state);
@@ -81,7 +18,7 @@ function DashboardContainer() {
 
   useEffect(() => {
     dispatch(getSales());
-  });
+  }, [dispatch]);
 
   const handleProfitRefresh = () => {
     dispatch(getProfits());
@@ -129,9 +66,13 @@ function DashboardContainer() {
           <MyChartContainer
             text={"Monthly Stats"}
             action={
-              <Button variant="text" onClick={handleProfitRefresh}>
-                View
-              </Button>
+              <IconButton
+                size="large"
+                onClick={handleProfitRefresh}
+                color="inherit"
+              >
+                <Refresh />
+              </IconButton>
             }
             content={<ChartBox chart={<CountChart />} />}
           />

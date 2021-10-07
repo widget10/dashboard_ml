@@ -1,29 +1,5 @@
-import { Divider, Paper } from "@mui/material";
-import styled from "styled-components";
-
-const ChartHeading = styled.div`
-  display: flex;
-  align-items: center;
-  color: #777575;
-  font-size: 16px;
-  font-weight: bold;
-  margin: 0px 16px;
-`;
-
-const Actions = styled.div`
-  margin: 0px 16px;
-  margin-left: auto;
-`;
-
-const Header = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-const ChartBoxContainer = styled(Paper)`
-  margin: 16px 0px;
-  padding: 8px;
-`;
+import { Divider } from "@mui/material";
+import { Actions, Header, ChartHeading, ChartBoxContainer } from "./styles";
 
 function ChartBox({ header, action, chart }) {
   return (

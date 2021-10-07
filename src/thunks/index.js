@@ -1,10 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-
-const GET_METHOD = "GET";
-const APPLICATION_JSON = "application/json";
+import { GET_METHOD, APPLICATION_JSON, BASE_ROUTE_DEV } from "./constants";
 
 export const getUser = createAsyncThunk("getUser", async (query, thunkAPI) => {
-  const response = await fetch("http://127.0.0.1:5000/get_user/", {
+  const response = await fetch(`${BASE_ROUTE_DEV}/get_user/`, {
     headers: {
       "Content-Type": APPLICATION_JSON,
     },
@@ -17,7 +15,7 @@ export const getUser = createAsyncThunk("getUser", async (query, thunkAPI) => {
 export const getSales = createAsyncThunk(
   "getSales",
   async (query, thunkAPI) => {
-    const response = await fetch("http://127.0.0.1:5000/get_sales/", {
+    const response = await fetch(`${BASE_ROUTE_DEV}/get_sales/`, {
       headers: {
         "Content-Type": APPLICATION_JSON,
       },
@@ -31,7 +29,7 @@ export const getSales = createAsyncThunk(
 export const getProfits = createAsyncThunk(
   "getProfits",
   async (query, thunkAPI) => {
-    const response = await fetch("http://127.0.0.1:5000/get_profits/", {
+    const response = await fetch(`${BASE_ROUTE_DEV}/get_profits/`, {
       headers: {
         "Content-Type": APPLICATION_JSON,
       },
