@@ -11,12 +11,12 @@ function App({ store }) {
 
   useEffect(() => {
     dispatch(getUser());
-  });
+  }, [dispatch]);
 
   return (
     <Box>
       <Header />
-      <Box mt={8}>
+      <Box mt={4}>
         <DashboardContainer />
       </Box>
     </Box>

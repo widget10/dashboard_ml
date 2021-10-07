@@ -11,7 +11,7 @@ const CountChart = () => {
 
   useEffect(() => {
     dispatch(getProfits());
-  });
+  }, [dispatch]);
 
   var options = {
     chart: {

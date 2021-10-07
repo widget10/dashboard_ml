@@ -19,7 +19,7 @@ import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Avatar from "@mui/material/Avatar";
-import BellIcon from "@mui/icons-material/Notifications";
+import BellIcon from "@mui/icons-material/NotificationsNone";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import LinearProgress from "@mui/material/LinearProgress";
