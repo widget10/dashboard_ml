@@ -3,19 +3,15 @@ import Chart from "react-apexcharts";
 var options = {
   plotOptions: {
     radialBar: {
-      startAngle: -135,
-      endAngle: 225,
       hollow: {
         margin: 0,
         size: "70%",
-        background: "#fff",
-        image: undefined,
         imageOffsetX: 0,
-        imageOffsetY: 0,
+        imageOffsetY: 4,
         position: "front",
         dropShadow: {
           enabled: true,
-          top: 3,
+          // top: 3,
           left: 0,
           blur: 4,
           opacity: 0.24,

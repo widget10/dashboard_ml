@@ -1,8 +1,18 @@
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import Header from "./components/Header";
 import DashboardContainer from "./components/DashboardContainer";
-import { Box } from "@mui/material";
+import Box from "@mui/material/Box";
 
-function App() {
+import { getUser } from "./thunks";
+
+function App({ store }) {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getUser());
+  });
+
   return (
     <Box>
       <Header />
