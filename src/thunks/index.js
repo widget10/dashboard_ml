@@ -1,8 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { GET_METHOD, APPLICATION_JSON, BASE_ROUTE_DEV } from "./constants";
+import { GET_METHOD, APPLICATION_JSON, BASE_ROUTE_PROD } from "./constants";
 
 export const getUser = createAsyncThunk("getUser", async (query, thunkAPI) => {
-  const response = await fetch(`${BASE_ROUTE_DEV}/get_user/`, {
+  const response = await fetch(`${BASE_ROUTE_PROD}/get_user/`, {
     headers: {
       "Content-Type": APPLICATION_JSON,
     },
@@ -15,7 +15,7 @@ export const getUser = createAsyncThunk("getUser", async (query, thunkAPI) => {
 export const getSales = createAsyncThunk(
   "getSales",
   async (query, thunkAPI) => {
-    const response = await fetch(`${BASE_ROUTE_DEV}/get_sales/`, {
+    const response = await fetch(`${BASE_ROUTE_PROD}/get_sales/`, {
       headers: {
         "Content-Type": APPLICATION_JSON,
       },
@@ -29,7 +29,7 @@ export const getSales = createAsyncThunk(
 export const getProfits = createAsyncThunk(
   "getProfits",
   async (query, thunkAPI) => {
-    const response = await fetch(`${BASE_ROUTE_DEV}/get_profits/`, {
+    const response = await fetch(`${BASE_ROUTE_PROD}/get_profits/`, {
       headers: {
         "Content-Type": APPLICATION_JSON,
       },
