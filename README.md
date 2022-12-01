@@ -1,6 +1,7 @@
 # A dashboard built on MUI and Apex chart with a basic flask backend api integration.
 
 Live here : https://jovial-nightingale-b4676e.netlify.app/
+
 Techstack used : -
 Frontend: ReactJS, Redux, MaterialUI, styled components, Apex Charts
 Backend: Python, Flask
